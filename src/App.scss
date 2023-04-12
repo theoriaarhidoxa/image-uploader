@@ -1,0 +1,284 @@
+.wrapper {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 30px 0;
+
+  > p {
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+    font: 40px 'Tahoma';
+    margin: 0 0 40px;
+
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 270px;
+    }
+  }
+
+  p {
+    margin: 0 0 20px;
+  }
+
+  &__buttons {
+    text-align: center;
+
+    .btn {
+      margin: 0 10px 10px 0;
+    }
+  }
+
+  &__previews {
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px -10px;
+
+    &-item {
+      width: calc(33.3% - 20px);
+      margin: 0 10px 20px;
+      border: 1px solid #ccc;
+      position: relative;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        display: block;
+      }
+
+      i {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background: rgba(255, 255, 255, .4);
+        padding: 4px 10px 6px;
+        z-index: 2;
+        font-style: normal;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity .5s ease;
+
+        &:before {
+          content: '\00d7';
+          font-size: 18px;
+          font-weight: 700;
+          transition: color .5s ease;
+        }
+
+        &:hover {
+          &:before {
+            color: crimson;
+          }
+        }
+      }
+
+      .panel {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(204, 204, 204, .7);
+        padding: 10px;
+        margin: 0;
+        transform: translateY(100%);
+        transition: transform .5s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+          &:first-child {
+            max-width: 135px;
+            max-height: 38px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+
+        &.hiddenPanel {
+          display: none;
+        }
+
+        &.bluePanel {
+          transform: none;
+          font-size: 12px;
+          justify-content: center;
+
+          span {
+            position: relative;
+            z-index: 2;
+          }
+
+          em {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            background-color: #169bd5;
+            transition: width 1s ease;
+          }
+        }
+
+      }
+
+      .panel2 {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 20px;
+        background-color: #f00;
+        transition: width 1s ease
+      }
+
+      &:hover {
+        i {
+          opacity: 1;
+        }
+
+        .panel {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  &__filesList {
+    padding: 20px 0;
+
+    table {
+      width: 100%;
+    }
+
+    &-item {
+      td {
+        border: 1px solid #ccc;
+        padding: 10px;
+
+        img {
+          width: 100%;
+          max-width: 100px;
+        }
+
+        a {
+          font-size: 11px;
+          color: #666;
+          overflow: hidden;
+          max-width: 600px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin: 0;
+          display: block;
+        }
+
+        .btn {
+          max-width: 78px;
+        }
+      }
+    }
+  }
+
+  h2 {
+    font: 700 15px/20px 'Tahoma';
+    color: crimson;
+  }
+}
+
+
+.btn {
+  display: inline-block;
+  padding: 10px;
+  font: 15px/17px 'Tahoma';
+  background-color: #169bd5;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color .3s ease;
+  text-decoration: none;
+  border: none;
+  overflow: hidden;
+  position: relative;
+
+  &.red {
+    background-color: crimson;
+  }
+
+  &[disabled] {
+    opacity: .7;
+    cursor: not-allowed;
+  }
+}
+
+
+input {
+  &[type=file] {
+    display: none;
+  }
+}
+
+.fixedBottomRight {
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+  color: #169bd5;
+  position: fixed;
+}
+
+
+@media(max-width: 1000px) {
+  .wrapper {
+    padding: 30px 20px;
+    max-width: 100%;
+
+    &__previews {
+      flex-flow: row wrap;
+
+      &-item {
+        width: calc(50% - 20px);
+      }
+    }
+
+    &__filesList {
+      &-item {
+        td {
+          a {
+            max-width: 330px;
+          }
+
+          img {
+            min-width: 100px;
+          }
+        }
+      }
+    }
+  }
+
+  .fixedBottomRight {
+    position: static;
+  }
+}
+
+
+@media(max-width: 600px) {
+  .wrapper {
+    &__previews {
+      &-item {
+        width: 100%;
+      }
+    }
+
+    &__filesList {
+      &-item {
+        td {
+          &:nth-child(2) {
+            display: none;
+          }
+
+          img {
+            max-width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
